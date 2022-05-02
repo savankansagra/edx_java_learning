@@ -2,7 +2,7 @@ package week2.gretestCommonDivisor;
 
 public class EcludingGCD {
 	
-	private int getGCD(int num1, int num2) {
+	public int getGCD(int num1, int num2) {
 		int gcdAns = 1;
 		
 		while(num1 >= 0 && num2 >= 0) {
