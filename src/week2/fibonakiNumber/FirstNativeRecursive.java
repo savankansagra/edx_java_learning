@@ -10,7 +10,7 @@ public class FirstNativeRecursive {
 		}
 	}
 	
-	private int fibonakiNativeWithloop(int i) {
+	public int fibonakiNativeWithloop(int i) {
 		int []fiboArray = new int[i+1];
 		fiboArray[0] = 0;
 		
