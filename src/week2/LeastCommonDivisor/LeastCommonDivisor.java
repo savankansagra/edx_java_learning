@@ -23,6 +23,7 @@ public class LeastCommonDivisor {
 	}
 	
 	public static void main(String[] args) {
+		//input parameters
 		int num1 = 28851538;
 		int num2 = 1183019;
 		LeastCommonDivisor leastCommonDivisor = new LeastCommonDivisor();
