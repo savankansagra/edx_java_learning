@@ -28,7 +28,7 @@ public class PlaceLine {
 			// Use Bubble sort for sorting array.
 			PlaceLine placeLine = new PlaceLine();
 			placeLine.sort(totalHouse,details);	
-			System.out.println("ok sorting");
+			//System.out.println("ok sorting");
 			
 			
 			String result = placeLine.isPosibleToPlot(totalHouse, details);
@@ -41,6 +41,8 @@ public class PlaceLine {
 
 	private String isPosibleToPlot(int totalHouse, int[][] details) {
 		 
+		boolean resultFlag = false;
+		
 		/*
 		 * Plot all the possible line.
 		 *  
@@ -89,16 +91,70 @@ public class PlaceLine {
 		
 		// formula for plotting x=y parallel line is
 		// Y = X + yCordinate - xCordinate
-		for(int k=)
+		// check for all x axis point
+		for(int k=minimumX;k<=maximumX;k++) {
+			int tempX = k;
+			int tempY = maximumY;
+			
+			//line equation will  be 
+			// Y = X + tempY - tempX
+			if(this.countOnBothSide(tempX, tempY, totalHouse, details)) {
+				resultFlag = true;
+				break;
+			}
+		}
 		
+		//check for all y axis points
+		if(!resultFlag) {
+			for(int k=minimumY;k<=maximumY;k++) {
+				int tempX = maximumX;
+				int tempY = k; 
+				
+				if(this.countOnBothSide(tempX, tempY, totalHouse, details)) {
+					resultFlag = true;
+					break;
+				}
+			}
+		}
 		
-		
-		
-		return null;
+		//Return result
+		if(resultFlag) {
+			return "YES";
+		} else {
+			return "NO";
+		}
 	}
 
 	
 	
+	private boolean countOnBothSide(int tempX, int tempY, int totalHouse, int[][] details) {
+		//line equation will  be 
+		// Y = X + tempY - tempX
+		
+		int leftSideCount = 0;
+		int rightSideCount = 0;
+		for(int l=0;l<totalHouse;l++) {
+			//check for above side
+			// pointY > pointX + tempY - tempX
+			if(details[l][1] > details[l][0] + tempY - tempX) {
+				leftSideCount += details[l][2];
+			}
+			
+			//check for below side
+			// PointY < PointX + tempY - tempX
+			if(details[l][1] < details[l][0] + tempY - tempX) {
+				rightSideCount += details[l][2];
+			}
+			
+		}
+	
+		// compare both result
+		if(leftSideCount == rightSideCount) {
+			return true;
+		}
+		return false;
+	}
+
 	private void sort(int totalHouse, int[][] details) {
 		for(int i=0;i<totalHouse;i++) {
 			for(int j=0;j<totalHouse-i-1;j++) {
