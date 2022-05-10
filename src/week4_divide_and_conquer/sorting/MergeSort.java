@@ -2,7 +2,8 @@ package week4_divide_and_conquer.sorting;
 
 public class MergeSort {
 	public static void main(String[] args) {
-		int[] input = new int[] {9,3,8,3,7,1};
+		//int[] input = new int[] {9,3,8,3,7,1};
+		int[] input = new int[] {2,3,9,2,1,9};
 		int n = 6;
 		
 		MergeSort mergeSort = new MergeSort();
@@ -33,7 +34,7 @@ public class MergeSort {
 		
 		for(int i=left; i<=right; i++) {
 			
-			if(leftPoint > mid && rightPoint < right) {
+			if(leftPoint > mid && rightPoint <= right) {
 				tempArray[k++] = input[rightPoint];
 				rightPoint++;
 				
