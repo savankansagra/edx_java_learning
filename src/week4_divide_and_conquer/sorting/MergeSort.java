@@ -49,8 +49,11 @@ public class MergeSort {
 				tempArray[k++] = input[leftPoint];
 				leftPoint++;			
 			}
-			
-		}	
+		}
+		
+		for(int i=left;i<=right;i++) {
+			input[i] = tempArray[i-left];
+		}
 	}
 	
 	private void printArray(int[] input) {
