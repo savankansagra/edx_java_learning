@@ -1,5 +1,9 @@
 package week5_dynamic_programming;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class MoneyChange {
 	public static void main(String[] args) {
 		// test case 1
@@ -8,10 +12,37 @@ public class MoneyChange {
 		
 		MoneyChange moneyChange = new MoneyChange();
 		
-		int result = moneyChange.minCoin(money, coins);
-		System.out.println(result);
+//		int result = moneyChange.minCoin(money, coins);
+//		System.out.println(result);
+		
+		int result2 = moneyChange.minCoinDynamic(money, coins);
+		System.out.println(result2);
+		
+		
 	}
 
+	
+	private int minCoinDynamic(int money, int[] coins) {
+		Map<Integer, Integer> cache = new HashMap<>();
+		cache.put(0, 0);
+		
+		for(int i=1;i<=money;i++) {
+			cache.put(i, cache.get(i-1)+1);
+			for(int coin:coins) {
+				if(coin <= i) {
+					int other = cache.get(i-coin)+1;
+					cache.put(i, Math.min(cache.get(i), other));
+				}
+			}
+			
+		}
+		
+		System.out.println(cache);
+		return cache.get(money);
+	}
+
+	
+	
 	/**
 	 * make recursive call to solve the problem.
 	 * 
